@@ -4,8 +4,15 @@ return {
     'nvim-lua/plenary.nvim', -- required
     'sindrets/diffview.nvim', -- optional - Diff integration
 
-    -- Only one of these is needed.
-    'nvim-telescope/telescope.nvim', -- optional
+    'nvim-telescope/telescope.nvim',
   },
-  config = true,
+  opts = {
+    kind = 'floating',
+  },
+  config = function()
+    local neogit = require 'neogit'
+    vim.keymap.set('n', '<leader>gn', function()
+      neogit.open { kind = 'floating' }
+    end, { desc = '[G]it [N]eogit' })
+  end,
 }
